@@ -50,8 +50,8 @@ jobs:
         uses: docker/login-action@v3.0.0
         with:
           # Username used to log against the Docker registry
-          username: ${{ secrets.DOCKERACC }}
-          password: ${{ secrets.DOCKERPWD }}
+          username: xct258
+          password: dckr_pat_m_SDF-n_aUtBlahWOnVOop5j64c
 
       - name: Build and push Docker image
         id: build-and-push
