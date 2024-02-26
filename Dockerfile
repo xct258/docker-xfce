@@ -27,6 +27,7 @@ COPY *.png /root/tmp/img/
 RUN echo '#!/bin/bash' >> /root/tmp/img/img.sh \
     && echo 'directory="/root/tmp/img"' >> /root/tmp/img/img.sh \
     && echo 'cd "$directory"' >> /root/tmp/img/img.sh \
+    && wget https://alist.xct258.top/d/xct258/onedrive/%E5%85%B6%E5%AE%83/onedrive3/%E5%9B%BE%E7%89%87/%E7%BD%91%E7%AB%99%E8%83%8C%E6%99%AF%E5%9B%BE/pc/all/449.jpg
     && echo 'image_files=$(find . -maxdepth 1 -type f \( -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.png" \))' >> /root/tmp/img/img.sh \
     && echo 'if [ -n "$image_files" ]; then' >> /root/tmp/img/img.sh \
     && echo '    mv $image_files /usr/share/images/desktop-base/default' >> /root/tmp/img/img.sh \
