@@ -15,8 +15,8 @@ RUN apt-get update && apt-get install -y task-xfce-desktop \
     # 修改本地缩放为novnc的默认设置和默认打开vnc.html
     && sed -i "s/UI.initSetting('resize', 'off');/UI.initSetting('resize', 'scale');/g" /usr/share/novnc/app/ui.js \
     && cp /usr/share/novnc/vnc.html /usr/share/novnc/index.html \
-    && mkdir -p /root/tmp/img
-
+    && mkdir -p /root/tmp/img \
+    && echo '* hard core 0' >> /etc/security/limits.conf
 
 # 设置默认壁纸（如果有）
 # 复制图片文件到指定目录
