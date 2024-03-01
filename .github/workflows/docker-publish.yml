@@ -7,13 +7,7 @@ name: Docker
 
 on:
   schedule:
-    - cron: '25 16 * * *'
-  push:
-    branches: [ "main" ]
-    # Publish semver tags as releases.
-    tags: [ 'v*.*.*' ]
-  pull_request:
-    branches: [ "main" ]
+    - cron: '0 8 * * 1' # 每周一的8:00 UTC
 
 
 env:
