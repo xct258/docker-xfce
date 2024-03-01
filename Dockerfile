@@ -16,6 +16,7 @@ RUN apt-get update && apt-get install -y task-xfce-desktop \
     && sed -i "s/UI.initSetting('resize', 'off');/UI.initSetting('resize', 'scale');/g" /usr/share/novnc/app/ui.js \
     && cp /usr/share/novnc/vnc.html /usr/share/novnc/index.html \
     && mkdir -p /root/tmp/img \
+    # 禁止core的生成
     && echo '* hard core 0' >> /etc/security/limits.conf
 
 # 设置默认壁纸
@@ -24,7 +25,7 @@ RUN echo '#!/bin/bash' >> /root/tmp/img/img.sh \
     && echo 'directory="/root/tmp/img"' >> /root/tmp/img/img.sh \
     && echo 'cd "$directory"' >> /root/tmp/img/img.sh \
     # 图片直连
-    && wget -P /root/tmp/img/ https://alist.xct258.top/d/xct258/onedrive/%E5%85%B6%E5%AE%83/onedrive3/%E5%9B%BE%E7%89%87/%E7%BD%91%E7%AB%99%E8%83%8C%E6%99%AF%E5%9B%BE/pc/all/449.jpg \
+    #&& wget -P /root/tmp/img/ https://alist.xct258.top/d/xct258/onedrive/%E5%85%B6%E5%AE%83/onedrive3/%E5%9B%BE%E7%89%87/%E7%BD%91%E7%AB%99%E8%83%8C%E6%99%AF%E5%9B%BE/pc/all/449.jpg \
     && echo 'image_files=$(find . -maxdepth 1 -type f \( -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.png" \))' >> /root/tmp/img/img.sh \
     && echo 'if [ -n "$image_files" ]; then' >> /root/tmp/img/img.sh \
     && echo '    mv $image_files /usr/share/images/desktop-base/default' >> /root/tmp/img/img.sh \
