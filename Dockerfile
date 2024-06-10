@@ -10,7 +10,7 @@ ENV TZ=Asia/Shanghai
 RUN apt-get update && apt-get install -y task-xfce-desktop \
     dbus-x11 \
     tigervnc-standalone-server \
-    novnc python3-websockify wget git curl nano \
+    novnc python3-websockify wget git curl nano jq \
     && apt-get remove -y xfce4-power-manager && apt autoremove -y \
     # 修改本地缩放为novnc的默认设置和默认打开vnc.html
     && sed -i "s/UI.initSetting('resize', 'off');/UI.initSetting('resize', 'scale');/g" /usr/share/novnc/app/ui.js \
