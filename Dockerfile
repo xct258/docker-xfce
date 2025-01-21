@@ -25,7 +25,7 @@ RUN echo '#!/bin/bash' >> /root/tmp/img/img.sh \
     && echo 'directory="/root/tmp/img"' >> /root/tmp/img/img.sh \
     && echo 'cd "$directory"' >> /root/tmp/img/img.sh \
     # 图片直链
-    && wget -P /root/tmp/img/ https://alist.xct258.top/d/xct258/onedrive/%E5%85%B6%E5%AE%83/3/%E5%9B%BE%E7%89%87/%E6%94%B6%E8%97%8F/pc/all/ee09baf5c000c9335980794ab396335813739474.png?sign=H_E4UkbrQBZGtaeDZrgy1A_IuTKEd5QItRmk0KvHYxY=:0 \
+    && #wget -P /root/tmp/img/ https://alist.xct258.top/d/xct258/onedrive/%E5%85%B6%E5%AE%83/3/%E5%9B%BE%E7%89%87/%E6%94%B6%E8%97%8F/pc/all/ee09baf5c000c9335980794ab396335813739474.png?sign=H_E4UkbrQBZGtaeDZrgy1A_IuTKEd5QItRmk0KvHYxY=:0 \
     && echo 'image_files=$(find . -maxdepth 1 -type f \( -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.png" \))' >> /root/tmp/img/img.sh \
     && echo 'if [ -n "$image_files" ]; then' >> /root/tmp/img/img.sh \
     && echo '    mv $image_files /usr/share/images/desktop-base/default' >> /root/tmp/img/img.sh \
