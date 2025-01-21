@@ -34,22 +34,20 @@ RUN apt-get update && apt-get install -y task-xfce-desktop \
     #&& /root/tmp/img/img.sh \
     #&& rm -rf /root/tmp \
     # 启动脚本
-RUN echo '#!/bin/bash' > /usr/local/bin/start.sh && \
-    cat << 'EOF' >> /usr/local/bin/start.sh
-if [ ! -f "$HOME/.vnc/passwd" ]; then
-    if [ -z "$VNC_PASSWORD" ]; then
-        VNC_PASSWORD=$(openssl rand -base64 6)
-        echo "没有设置VNC_PASSWORD环境变量，临时vnc密码为：$VNC_PASSWORD"
-    fi
-    mkdir -p ~/.vnc/
-    echo "$VNC_PASSWORD" | vncpasswd -f > ~/.vnc/passwd
-    chmod 600 ~/.vnc/passwd
-fi
-ulimit -c 0
-tigervncserver -xstartup /usr/bin/xfce4-session -geometry 1920x1080 -localhost no :1 >/dev/null 2>&1
-websockify -D --web /usr/share/novnc 6901 localhost:5901 >/dev/null 2>&1
-tail -f /dev/null
-EOF
-&& chmod +x /usr/local/bin/start.sh
+    RUN echo '#!/bin/bash' >> /usr/local/bin/start.sh \
+    && echo 'if [ ! -f "$HOME/.vnc/passwd" ]; then' >> /usr/local/bin/start.sh \
+    && echo '    if [ -z "$VNC_PASSWORD" ]; then' >> /usr/local/bin/start.sh \
+    && echo '        VNC_PASSWORD=$(openssl rand -base64 6)' >> /usr/local/bin/start.sh \
+    && echo '        echo "没有设置VNC_PASSWORD环境变量，临时vnc密码为：$VNC_PASSWORD"' >> /usr/local/bin/start.sh \
+    && echo '    fi' >> /usr/local/bin/start.sh \
+    && echo 'mkdir -p ~/.vnc/' >> /usr/local/bin/start.sh \
+    && echo 'echo "$VNC_PASSWORD" | vncpasswd -f > ~/.vnc/passwd' >> /usr/local/bin/start.sh \
+    && echo 'chmod 600 ~/.vnc/passwd' >> /usr/local/bin/start.sh \
+    && echo 'fi' >> /usr/local/bin/start.sh \
+    && echo 'ulimit -c 0' >> /usr/local/bin/start.sh \
+    && echo 'tigervncserver -xstartup /usr/bin/xfce4-session -geometry 1920x1080 -localhost no :1 >/dev/null 2>&1' >> /usr/local/bin/start.sh \
+    && echo 'websockify -D --web /usr/share/novnc 6901 localhost:5901 >/dev/null 2>&1' >> /usr/local/bin/start.sh \
+    && echo 'tail -f /dev/null' >> /usr/local/bin/start.sh \
+    && chmod +x /usr/local/bin/start.sh
 
 ENTRYPOINT ["/usr/local/bin/start.sh"]
