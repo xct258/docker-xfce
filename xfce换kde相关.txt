@@ -1,0 +1,16 @@
+apt install -y dbus-x11 tigervnc-standalone-server     novnc python3-websockify wget git curl nano jq
+sed -i "s/UI.initSetting('resize', 'off');/UI.initSetting('resize', 'scale');/g" /usr/share/novnc/app/ui.js
+cp /usr/share/novnc/vnc.html /usr/share/novnc/index.html
+echo '* hard core 0' >> /etc/security/limits.conf
+mkdir -p ~/.vnc/
+echo xct2584200242 | vncpasswd -f > ~/.vnc/passwd
+chmod 600 ~/.vnc/passwd
+ulimit -c 0
+tigervncserver -xstartup /usr/bin/plasma_session -geometry 1920x1080 -localhost no :1
+websockify -D --web /usr/share/novnc 6901 localhost:5901
+
+# 安装终端管理工具
+apt install tilix
+
+# 卸载没用的软件包
+apt remove plasma-discover
