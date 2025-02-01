@@ -3,7 +3,7 @@ FROM debian
 # 设置中文环境
 RUN apt-get update && apt-get install -y locales tzdata && rm -rf /var/lib/apt/lists/* \
     && localedef -i zh_CN -c -f UTF-8 -A /usr/share/locale/locale.alias zh_CN.UTF-8
-ENV LANG zh_CN.UTF-8 
+ENV LANG=zh_CN.UTF-8 
 ENV TZ=Asia/Shanghai
 
 # 安装 XFCE 桌面、VNC 服务器和必要的依赖项
